@@ -1,0 +1,115 @@
+<div *ngIf="showRestaurants" class="container-fluid">
+    <div class="row">
+        <h1>RESTAURANTES</h1>
+    </div>
+    <br>
+    <div class="row">
+        <form>
+            <fieldset>
+                <legend>Filtros</legend>
+                <div class="form-group">
+                    <label>Nome:</label>
+                    <input [(ngModel)]="searchName" [ngModelOptions]="{standalone:
+                        true}" type="text" class="form-control">
+                </div>
+                <button (click)="btnSearch()" class="btn btn-primary">
+                    <span class='glyphicon glyphicon-search'></span>
+                    Pesquisar
+                </button>
+                <button (click)="btnNew()" class="btn btn-success">
+                    <span class='glyphicon glyphicon-plus-sign'></span>
+                    Cadastrar novo Restaurante
+                </button>
+            </fieldset>
+        </form>
+    </div>
+    <br>
+    <div class="row">
+        <form>
+            <fieldset>
+                <table class="table table-striped">
+                        <thead>
+                          <tr>
+                            <th class="col-md-1"></th>
+                            <th class="col-md-1"></th>
+                            <th class="col-md-10">Restaurantes</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr *ngFor="let restaurant of restaurants" >
+                            <td>
+                                <button (click)="btnRemove(restaurant.id)" class="btn btn-danger">
+                                    <span class="glyphicon glyphicon-minus-sign"></span>
+                                </button>
+                            </td>
+                            <td>
+                                <button (click)="btnEdit(restaurant)" class="btn btn-primary">
+                                    <span class="glyphicon glyphicon-pencil"></span>
+                                </button>
+                            </td>
+                            <td>{{restaurant.name}}</td>
+                          </tr>
+                        </tbody>
+                      </table>
+            </fieldset>
+        </form>
+    </div>
+</div>
+
+<!-- Register Restaurant -->
+
+<div *ngIf="registerRestaurant" class="container-fluid">
+    <div class="row">
+        <h1>CADASTRO DE RESTAURANTE</h1>
+    </div>
+    <br>
+    <div class="row">
+        <form>
+            <fieldset>
+                <legend>Dados</legend>
+                <div class="form-group">
+                    <label>Nome do restaurante:</label>
+                    <input [(ngModel)]="model.name" [ngModelOptions]="{standalone:
+                        true}" type="text" class="form-control">
+                </div>
+                <button (click)="btnCancelRegister()" class="btn btn-danger">
+                    <span class="glyphicon glyphicon-arrow-left"></span>
+                    Cancelar
+                </button>
+                <button (click)="btnSave()" class="btn btn-success">
+                    <span class="glyphicon glyphicon-floppy-disk"></span>
+                    Salvar
+                </button>
+            </fieldset>
+        </form>
+    </div>
+</div>
+
+<!-- Update Restaurant -->
+
+<div *ngIf="editRestaurant" class="container-fluid">
+    <div class="row">
+        <h1>ATUALIZANDO RESTAURANTE</h1>
+    </div>
+    <br>
+    <div class="row">
+        <form>
+            <fieldset>
+                <legend>Dados</legend>
+                <div class="form-group">
+                    <label>Nome do restaurante:</label>
+                    <input [(ngModel)]="nameUpdate" [ngModelOptions]="{standalone:
+                        true}" type="text" class="form-control">
+                </div>
+                <button (click)="btnCancelUpdate()" class="btn btn-danger">
+                    <span class="glyphicon glyphicon-arrow-left"></span>
+                    Cancelar
+                </button>
+                <button (click)="btnUpdate()" class="btn btn-success">
+                    <span class="glyphicon glyphicon-floppy-disk"></span>
+                    Salvar
+                </button>
+            </fieldset>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,147 @@
+<div *ngIf="showPlates" class="container-fluid">
+    <div class="row">
+        <h1>PRATOS</h1>
+    </div>
+    <br>
+    <div class="row">
+        <form>
+            <fieldset>
+                <div class="form-group">
+                    <button (click)="btnNew()" type="submit" class="btn btn-success">
+                        <span class='glyphicon glyphicon-plus-sign'></span>
+                        Cadastrar novo Prato
+                    </button>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+    <br>
+    <div class="row">
+        <form>
+            <fieldset>
+                <table class="table table-striped">
+                        <thead>
+                          <tr>
+                            <th ></th>
+                            <th ></th>
+                            <th >Restaurante</th>
+                            <th >Prato</th>
+                            <th >Preço(R$)</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr *ngFor="let plate of plates" >
+                              <td>
+                                  <button (click)="btnRemove(plate.id)" class="btn btn-danger">
+                                      <span class="glyphicon glyphicon-minus-sign"></span>
+                                  </button>
+                              </td>
+                              <td>
+                                  <button (click)="btnEdit(plate)" class="btn btn-primary">
+                                      <span class="glyphicon glyphicon-pencil"></span>
+                                  </button>
+                              </td>
+                              <td>{{plate.restaurant.name}}</td>
+                              <td>{{plate.name}}</td>
+                              <td>{{plate.price}}</td>
+                            </tr>
+                        </tbody>
+                      </table>
+            </fieldset>
+        </form>
+    </div>
+</div>
+
+<!-- Register Plate -->
+
+<div *ngIf="registerPlate" class="container-fluid">
+    <div class="row">
+        <h1>CADASTRO DE PRATO</h1>
+    </div>
+    <br>
+    <div class="row">
+        <form>
+            <fieldset>
+                <legend>Dados</legend>
+                <div class="form-group">
+                    <label for="exampleSelect1">Restaurante</label>
+                    <select [(ngModel)]="model.restaurantId" [ngModelOptions]="{standalone:
+                      true}" class="form-control" >
+                      <option *ngFor="let restaurant of restaurants; let i = index" value="{{restaurant.id}}" >{{restaurant.name}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Prato</label>
+                    <input [(ngModel)]="model.name" [ngModelOptions]="{standalone:
+                      true}" type="text" class="form-control" id="exampleInputEmail1" placeholder="">
+                    <small id="emailHelp" class="form-text text-muted">Por exemplo: frango com maionese</small>
+                </div>
+                <div class="form-group">
+                    <label for="example-number-input" class="col-2 col-form-label">Preço(R$)</label>
+                    <div class="col-10">
+                      <input [(ngModel)]="model.price" [ngModelOptions]="{standalone:
+                        true}" class="form-control" type="number" value="0.00" id="example-number-input">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <button (click)="btnCancelEdit()" class="btn btn-danger">
+                        <span class="glyphicon glyphicon-arrow-left"></span>
+                        Cancelar
+                    </button>
+                    <button (click)="btnSave()" class="btn btn-success">
+                        <span class="glyphicon glyphicon-floppy-disk"></span>
+                        Salvar
+                    </button>
+                </div>
+                
+            </fieldset>
+        </form>
+    </div>
+</div>
+
+<!-- Update Plate -->
+
+<div *ngIf="editPlate" class="container-fluid">
+    <div class="row">
+        <h1>ATUALIZANDO PRATO</h1>
+    </div>
+    <br>
+    <div class="row">
+        <form>
+            <fieldset>
+                <legend>Dados</legend>
+                <div class="form-group">
+                    <label for="exampleSelect1">Restaurante</label>
+                    <select [(ngModel)]="restaurantUpdate" [ngModelOptions]="{standalone:
+                      true}"  class="form-control" >
+                      <option *ngFor="let restaurant of restaurants" value="{{restaurant.id}}" [selected]="restaurant.id == restaurantUpdate" >{{restaurant.name}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Prato</label>
+                    <input [(ngModel)]="nameUpdate" [ngModelOptions]="{standalone:
+                      true}" type="text" class="form-control" id="exampleInputEmail1" placeholder="">
+                    <small id="emailHelp" class="form-text text-muted">Por exemplo: frango com maionese</small>
+                </div>
+                <div class="form-group">
+                    <label for="example-number-input" class="col-2 col-form-label">Preço(R$)</label>
+                    <div class="col-10">
+                      <input [(ngModel)]="priceUpdate" [ngModelOptions]="{standalone:
+                        true}" class="form-control" type="number" value="0.00" id="example-number-input">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <button (click)="btnCancelEdit()" class="btn btn-danger">
+                        <span class="glyphicon glyphicon-arrow-left"></span>
+                        Cancelar
+                    </button>
+                    <button (click)="btnUpdate()" class="btn btn-success">
+                        <span class="glyphicon glyphicon-floppy-disk"></span>
+                        Salvar
+                    </button>
+                </div>
+                
+            </fieldset>
+        </form>
+    </div>
+</div>

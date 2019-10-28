@@ -1,0 +1,48 @@
+/*Set a min width where your table start to look like crap*/
+table { min-width: 600px; }
+
+/*The next 3 sections make the magic happen*/
+thead, tbody tr {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+}
+
+tbody {
+    display: block;
+    max-height: 330px;
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
+
+td {
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/*Use the following to make sure cols align correctly*/
+table, tr, th, td {
+    
+    border-collapse: collapse;
+}
+
+/*Set your columns to where you want them to be, skip the one that you can have resize to any width*/
+th:nth-child(1), td:nth-child(1) {
+    width: 85px;
+}
+
+th:nth-child(2), td:nth-child(2) {
+    width: 150px;
+}
+
+th:nth-child(4), td:nth-child(4) {
+    width: 125px;
+}
+
+th:nth-child(5) {
+    width: 102px;
+}
+
+td:nth-child(5) {
+    width: 85px;
+}
